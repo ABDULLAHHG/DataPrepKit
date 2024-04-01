@@ -1,7 +1,7 @@
 import pandas as pd
 
 class DataProcessor:
-    def init(self, file_path: str):
+    def __init__(self, file_path: str):
         self.file_path = file_path
         self.file_extension = self.file_path.rsplit(".", 1)[-1].lower()
         self.df = None
@@ -35,8 +35,24 @@ class DataProcessor:
         print(f"\nValue counts:\n{column.value_counts()}")
         print(f"\nUnique values:\n{column.unique()}")
 
+    def view_dataframe_description(self) -> None:
+        print(f"First 5 rows:\n{self.df.head()}")
+        print(f"\nLast 5 rows:\n{self.df.tail()}")
+        print(f"\nInfo:\n{self.df.info()}")
+    
+    def show_missing_values(self):
+        print(f"\n{self.df.isna().sum()}")
+
+    def handling_missing_values(self , col : str):
+        if self.df[col].dytpe == "int64":
+            ways =  ["Mode" , "Mean" , "median"]
+    def __handling_int(self , col , )aaa
 # Usage example
-data_processor = DataProcessor("path/to/your/file.csv")
+data_processor = DataProcessor("Project.csv")
 data_processor.read_data()
-data_processor.encode_column("column_name", "categorical")
-data_processor.view_column_description("column_name")
+data_processor.view_dataframe_description()
+# col_name = input("\nEnter column name : ")
+# data_processor.view_column_description(col_name)
+# data_processor.encode_column(col_name, "categorical")
+# data_processor.view_column_description(col_name)
+data_processor.show_missing_values()
