@@ -37,3 +37,4 @@ Evaluation Criteria:
 - Creativity and efficiency in managing different file formats and data preprocessing challenges.
 
 `kaggle datasets download divu2001/coffee-shop-sales-analysis`
+`kaggle datasets download arnavvvvv/netflix-movies-and-tv-shows`
