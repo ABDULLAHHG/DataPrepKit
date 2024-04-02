@@ -6,7 +6,7 @@ class DataProcessor:
         self.file_extension = self.file_path.rsplit(".", 1)[-1].lower()
         self.df = None
 
-    def read_data(self)  -> None :
+    def read_data(self) -> None :
         try:
             if self.file_extension == "csv":
                 self.df = pd.read_csv(self.file_path)
@@ -40,19 +40,38 @@ class DataProcessor:
         print(f"\nLast 5 rows:\n{self.df.tail()}")
         print(f"\nInfo:\n{self.df.info()}")
     
-    def show_missing_values(self):
+    def show_missing_values(self) -> None:
         print(f"\n{self.df.isna().sum()}")
 
-    def handling_missing_values(self , col : str):
-        if self.df[col].dytpe == "int64":
-            ways =  ["Mode" , "Mean" , "median"]
-    def __handling_int(self , col , )aaa
-# Usage example
-data_processor = DataProcessor("Project.csv")
+    def handling_numerical_missing_values(self , col : str , startigay : str) -> None:
+        if self.df[col].dtype == "int64":
+            if startigay == "mod":
+                self.df[col].fillna(self.df[col].mode()[0], inplace = True)
+            elif startigay == "mean":
+                self.df[col].fillna(self.df[col].mean(), inplace = True)
+            elif startigay == "median":
+                self.df[col].fillna(self.df[col].median(), inplace = True)
+
+        elif self.df[col].dtype == "float64":
+            if startigay == "mod":
+                self.df[col].fillna(self.df[col].mode()[0], inplace = True)
+            elif startigay == "mean":
+                self.df[col].fillna(self.df[col].mean(), inplace = True)
+            elif startigay == "median":
+                self.df[col].fillna(self.df[col].median(), inplace = True)
+
+    def handle_catigorical_missing_values(self , col : str) -> None:
+        self.df[col].fillna(self.df[col].mode()[0], inplace = True)
+
+
+# Example
+data_processor = DataProcessor("netflix_titles.csv")
+# Read Dataset
 data_processor.read_data()
+# View dataframe description
 data_processor.view_dataframe_description()
-# col_name = input("\nEnter column name : ")
-# data_processor.view_column_description(col_name)
-# data_processor.encode_column(col_name, "categorical")
-# data_processor.view_column_description(col_name)
+# Show missing values 
+data_processor.show_missing_values()
+# Handle Missing values 
+data_processor.handle_catigorical_missing_values("director")
 data_processor.show_missing_values()
