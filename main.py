@@ -1,6 +1,6 @@
 import pandas as pd
 
-class DataProcessor:
+class DataPrepKit:
     def __init__(self, file_path: str):
         self.file_path = file_path
         self.file_extension = self.file_path.rsplit(".", 1)[-1].lower()
@@ -65,13 +65,13 @@ class DataProcessor:
 
 
 # Example
-data_processor = DataProcessor("netflix_titles.csv")
+DPK = DataPrepKit("netflix_titles.csv")
 # Read Dataset
-data_processor.read_data()
+DPK.read_data()
 # View dataframe description
-data_processor.view_dataframe_description()
+DPK.view_dataframe_description()
 # Show missing values 
-data_processor.show_missing_values()
+DPK.show_missing_values()
 # Handle Missing values 
-data_processor.handle_catigorical_missing_values("director")
-data_processor.show_missing_values()
+DPK.handle_catigorical_missing_values("director") 
+DPK.show_missing_values()
